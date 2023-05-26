@@ -1,4 +1,4 @@
-# Install script for directory: /Users/calvin/repos/HelloWorldPlaydate
+# Install script for directory: /Users/calvin/repos/PlaydateRhythm
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -45,5 +45,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/Users/calvin/repos/HelloWorldPlaydate/build/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/Users/calvin/repos/PlaydateRhythm/build/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")
