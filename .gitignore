@@ -9,6 +9,5 @@ Extension/.dep/*.o.d
 *.elf
 *.hex
 *.map
-build/dep
-build/CMakeFiles/
+build/
 .cache/
