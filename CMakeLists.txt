@@ -2,8 +2,7 @@ cmake_minimum_required(VERSION 3.14)
 set(CMAKE_C_STANDARD 11)
 
 set(ENVSDK $ENV{PLAYDATE_SDK_PATH})
-set(CMAKE_EXPORT_COMPILE_COMMANDS, ON)
-set(CSOURCE src/game.c src/kick.c src/snare.c)
+set(CSOURCE src/main.c src/game.c src/kick.c src/snare.c)
 
 if (NOT ${ENVSDK} STREQUAL "")
 	# Convert path from Windows
@@ -24,6 +23,7 @@ if (NOT EXISTS ${SDK})
 endif()
 
 set(CMAKE_CONFIGURATION_TYPES "Debug;Release")
+set(CMAKE_EXPORT_COMPILE_COMMANDS, TRUE)
 set(CMAKE_XCODE_GENERATE_SCHEME TRUE)
 
 # Game Name Customization

@@ -4,9 +4,6 @@
 #include "kick.h"
 #include "snare.h"
 
-#define SNARE_DECAY 0.20
-#define SNARE_HZ 440
-
 typedef struct GameData {
   // Frame Data
   uint32_t frame;

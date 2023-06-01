@@ -1,7 +1,7 @@
 #include <pd_api.h>
 
-#define SNARE_DECAY 0.15
-#define SNARE_HZ 80
+#define SNARE_DECAY 0.20
+#define SNARE_HZ 440
 
 typedef struct SnareModule {
   PDSynth *synth;
