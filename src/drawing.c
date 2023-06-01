@@ -1,7 +1,7 @@
 #include "drawing.h"
 
-#define SCREEN_WIDTH 420
-#define SCREEN_HEIGHT 200
+#define SCREEN_WIDTH 400
+#define SCREEN_HEIGHT 240
 #define MARKER_SIZE 16
 
 PlaydateAPI *playdate;
@@ -29,7 +29,7 @@ void draw_road(void) {
   }
   LCDSprite *sprite = playdate->sprite->newSprite();
   playdate-> sprite->setImage(sprite, bitmap, kBitmapUnflipped);
-  playdate->sprite->moveTo(sprite, 0, 0);
+  playdate->sprite->moveTo(sprite, SCREEN_WIDTH/2, SCREEN_HEIGHT/2);
   playdate->sprite->setSize(sprite, SCREEN_WIDTH, SCREEN_HEIGHT);
   playdate->sprite->addSprite(sprite);
 }
