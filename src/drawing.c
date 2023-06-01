@@ -21,6 +21,19 @@ void create_sprite(LCDBitmap *bitmap, void *embeddedData) {
   playdate->sprite->addSprite(sprite);
 }
 
+void draw_road(void) {
+  const char *err;
+  LCDBitmap *bitmap = playdate -> graphics -> loadBitmap("image/road.png", &err);
+  if (bitmap == NULL) {
+    playdate -> system -> error("%s:%i Couldn't road kick bitmap %s: %s", __FILE__, __LINE__, "image/road.png", err);
+  }
+  LCDSprite *sprite = playdate->sprite->newSprite();
+  playdate-> sprite->setImage(sprite, bitmap, kBitmapUnflipped);
+  playdate->sprite->moveTo(sprite, 0, 0);
+  playdate->sprite->setSize(sprite, SCREEN_WIDTH, SCREEN_HEIGHT);
+  playdate->sprite->addSprite(sprite);
+}
+
 void create_kick_note(KickModule module) {
   create_sprite(module.bitmap, NULL);
 }

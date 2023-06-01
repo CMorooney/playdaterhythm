@@ -11,6 +11,7 @@ void game_init(void) {
   playdate -> display -> setRefreshRate(0);
 
   init_drawing(playdate);
+  draw_road();
   init_font();
   init_kick();
   init_snare();
