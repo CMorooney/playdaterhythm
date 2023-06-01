@@ -1,5 +1,4 @@
 #include "game.h"
-#include "drawing.h"
 
 PlaydateAPI *playdate;
 GameData data;
@@ -60,15 +59,18 @@ bool button_pressed(PDButtons button) {
 
 void game_update(void) {
   update_delta_time();
+  update_notes();
+
   update_buttons();
 
   if(button_pressed(kButtonDown)) {
     hit_kick(playdate);
-    create_note(KICK, 10);
+    create_kick_note(data.kick_module);
   }
 
   if(button_pressed(kButtonRight)) {
     hit_snare(playdate);
+    create_snare_note(data.snare_module);
   }
 
   playdate -> system -> drawFPS(0, 0);

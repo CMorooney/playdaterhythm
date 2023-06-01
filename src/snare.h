@@ -6,7 +6,6 @@
 typedef struct SnareModule {
   PDSynth *synth;
   LCDBitmap *bitmap;
-  LCDSprite *sprite;
 } SnareModule;
 
 void init_snare_module(PlaydateAPI *playdate);

@@ -1,3 +1,0 @@
-enum Drum {
-  KICK, SNARE
-};

@@ -1,5 +1,4 @@
 #include "kick.h"
-#include <pd_api.h>
 
 KickModule module;
 
@@ -10,8 +9,6 @@ void init_kick_module(PlaydateAPI *playdate) {
     playdate -> system -> error("%s:%i Couldn't load kick bitmap %s: %s", __FILE__, __LINE__, "image/kick.png", err);
   }
 
-  module.sprite = playdate -> sprite -> newSprite();
-  playdate -> sprite -> setImage(module.sprite, module.bitmap, kBitmapUnflipped);
 
   module.synth = playdate -> sound -> synth -> newSynth();
   if (module.synth == NULL) {

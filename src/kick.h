@@ -6,7 +6,6 @@
 typedef struct KickModule {
   PDSynth *synth;
   LCDBitmap *bitmap;
-  LCDSprite *sprite;
 } KickModule;
 
 void init_kick_module(PlaydateAPI *playdate);

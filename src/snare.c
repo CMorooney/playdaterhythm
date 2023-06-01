@@ -1,5 +1,4 @@
 #include "snare.h"
-#include <pd_api.h>
 
 SnareModule module;
 
@@ -9,9 +8,6 @@ void init_snare_module(PlaydateAPI *playdate) {
   if(module.bitmap == NULL) {
     playdate -> system -> error("%s:%i Couldn't load snare bitmap %s: %s", __FILE__, __LINE__, "image/snare.png", err);
   }
-
-  module.sprite = playdate -> sprite -> newSprite();
-  playdate -> sprite -> setImage(module.sprite, module.bitmap, kBitmapUnflipped);
 
   module.synth = playdate -> sound -> synth -> newSynth();
   if (module.synth == NULL) {

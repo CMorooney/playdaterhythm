@@ -1,8 +1,7 @@
 #include <pd_api.h>
 #include <stdint.h>
 #include <stdbool.h>
-#include "kick.h"
-#include "snare.h"
+#include "drawing.h"
 
 typedef struct GameData {
   // Frame Data
