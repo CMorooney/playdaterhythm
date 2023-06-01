@@ -1,13 +1,13 @@
-#include "kick.h"
+#include "snare.h"
 #include <pd_api.h>
 
-KickModule module;
+SnareModule module;
 
-void init_kick_module(PlaydateAPI *playdate) {
+void init_snare_module(PlaydateAPI *playdate) {
   const char *err;
-  module.bitmap = playdate -> graphics -> loadBitmap("image/kick.png", &err);
+  module.bitmap = playdate -> graphics -> loadBitmap("image/snare.png", &err);
   if(module.bitmap == NULL) {
-    playdate -> system -> error("%s:%i Couldn't load kick bitmap %s: %s", __FILE__, __LINE__, "image/kick.png", err);
+    playdate -> system -> error("%s:%i Couldn't load snare bitmap %s: %s", __FILE__, __LINE__, "image/snare.png", err);
   }
 
   module.sprite = playdate -> sprite -> newSprite();
@@ -19,14 +19,14 @@ void init_kick_module(PlaydateAPI *playdate) {
   } else {
     playdate -> sound -> synth -> setWaveform(module.synth, kWaveformNoise);
     playdate -> sound -> synth -> setAttackTime(module.synth, 0);
-    playdate -> sound -> synth -> setDecayTime(module.synth, KICK_DECAY);
+    playdate -> sound -> synth -> setDecayTime(module.synth, SNARE_DECAY);
   }
 }
 
-KickModule get_kick_module(void) {
+SnareModule get_snare_module(void) {
   return module;
 }
 
-void hit_kick(PlaydateAPI *playdate) {
-  playdate -> sound -> synth -> playNote(module.synth, KICK_HZ, 1, KICK_DECAY, 0);
+void hit_snare(PlaydateAPI *playdate) {
+  playdate -> sound -> synth -> playNote(module.synth, SNARE_HZ, 1, SNARE_DECAY, 0);
 }

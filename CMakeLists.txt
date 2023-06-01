@@ -2,8 +2,8 @@ cmake_minimum_required(VERSION 3.14)
 set(CMAKE_C_STANDARD 11)
 
 set(ENVSDK $ENV{PLAYDATE_SDK_PATH})
-
-set(CSOURCE src/game.c src/kick.c)
+set(CMAKE_EXPORT_COMPILE_COMMANDS, ON)
+set(CSOURCE src/game.c src/kick.c src/snare.c)
 
 if (NOT ${ENVSDK} STREQUAL "")
 	# Convert path from Windows
@@ -25,7 +25,6 @@ endif()
 
 set(CMAKE_CONFIGURATION_TYPES "Debug;Release")
 set(CMAKE_XCODE_GENERATE_SCHEME TRUE)
-set(CMAKE_EXPORT_COMPILE_COMMANDS TRUE)
 
 # Game Name Customization
 set(PLAYDATE_GAME_NAME hello_world)
@@ -34,9 +33,9 @@ set(PLAYDATE_GAME_DEVICE hello_world_DEVICE)
 project(${PLAYDATE_GAME_NAME} C ASM)
 
 if (TOOLCHAIN STREQUAL "armgcc")
-	add_executable(${PLAYDATE_GAME_DEVICE} src/main.c)
+  add_executable(${PLAYDATE_GAME_DEVICE} ${CSOURCE})
 else()
-	add_library(${PLAYDATE_GAME_NAME} SHARED src/main.c )
+  add_library(${PLAYDATE_GAME_NAME} SHARED ${CSOURCE} )
 endif()
 
 include(${SDK}/C_API/buildsupport/playdate_game.cmake)

@@ -132,29 +132,77 @@ hello_world/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/hello_world.dir/build.make CMakeFiles/hello_world.dir/build
 .PHONY : hello_world/fast
 
-src/main.o: src/main.c.o
-.PHONY : src/main.o
+src/game.o: src/game.c.o
+.PHONY : src/game.o
 
 # target to build an object file
-src/main.c.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/hello_world.dir/build.make CMakeFiles/hello_world.dir/src/main.c.o
-.PHONY : src/main.c.o
+src/game.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/hello_world.dir/build.make CMakeFiles/hello_world.dir/src/game.c.o
+.PHONY : src/game.c.o
 
-src/main.i: src/main.c.i
-.PHONY : src/main.i
+src/game.i: src/game.c.i
+.PHONY : src/game.i
 
 # target to preprocess a source file
-src/main.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/hello_world.dir/build.make CMakeFiles/hello_world.dir/src/main.c.i
-.PHONY : src/main.c.i
+src/game.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/hello_world.dir/build.make CMakeFiles/hello_world.dir/src/game.c.i
+.PHONY : src/game.c.i
 
-src/main.s: src/main.c.s
-.PHONY : src/main.s
+src/game.s: src/game.c.s
+.PHONY : src/game.s
 
 # target to generate assembly for a file
-src/main.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/hello_world.dir/build.make CMakeFiles/hello_world.dir/src/main.c.s
-.PHONY : src/main.c.s
+src/game.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/hello_world.dir/build.make CMakeFiles/hello_world.dir/src/game.c.s
+.PHONY : src/game.c.s
+
+src/kick.o: src/kick.c.o
+.PHONY : src/kick.o
+
+# target to build an object file
+src/kick.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/hello_world.dir/build.make CMakeFiles/hello_world.dir/src/kick.c.o
+.PHONY : src/kick.c.o
+
+src/kick.i: src/kick.c.i
+.PHONY : src/kick.i
+
+# target to preprocess a source file
+src/kick.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/hello_world.dir/build.make CMakeFiles/hello_world.dir/src/kick.c.i
+.PHONY : src/kick.c.i
+
+src/kick.s: src/kick.c.s
+.PHONY : src/kick.s
+
+# target to generate assembly for a file
+src/kick.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/hello_world.dir/build.make CMakeFiles/hello_world.dir/src/kick.c.s
+.PHONY : src/kick.c.s
+
+src/snare.o: src/snare.c.o
+.PHONY : src/snare.o
+
+# target to build an object file
+src/snare.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/hello_world.dir/build.make CMakeFiles/hello_world.dir/src/snare.c.o
+.PHONY : src/snare.c.o
+
+src/snare.i: src/snare.c.i
+.PHONY : src/snare.i
+
+# target to preprocess a source file
+src/snare.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/hello_world.dir/build.make CMakeFiles/hello_world.dir/src/snare.c.i
+.PHONY : src/snare.c.i
+
+src/snare.s: src/snare.c.s
+.PHONY : src/snare.s
+
+# target to generate assembly for a file
+src/snare.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/hello_world.dir/build.make CMakeFiles/hello_world.dir/src/snare.c.s
+.PHONY : src/snare.c.s
 
 # Help Target
 help:
@@ -165,9 +213,15 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... hello_world"
-	@echo "... src/main.o"
-	@echo "... src/main.i"
-	@echo "... src/main.s"
+	@echo "... src/game.o"
+	@echo "... src/game.i"
+	@echo "... src/game.s"
+	@echo "... src/kick.o"
+	@echo "... src/kick.i"
+	@echo "... src/kick.s"
+	@echo "... src/snare.o"
+	@echo "... src/snare.i"
+	@echo "... src/snare.s"
 .PHONY : help
 
 

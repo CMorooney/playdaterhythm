@@ -1,6 +1,8 @@
 #include <pd_api.h>
 #include <stdint.h>
+#include <stdbool.h>
 #include "kick.h"
+#include "snare.h"
 
 #define SNARE_DECAY 0.20
 #define SNARE_HZ 440
@@ -12,13 +14,13 @@ typedef struct GameData {
   float delta_time;
 
   // Input Data
-  PDButtons buttonsHeld;
-  PDButtons buttonsPressed;
-  PDButtons buttonsReleased;
+  PDButtons buttons_held;
+  PDButtons buttons_pressed;
+  PDButtons buttons_released;
 
   // Synths
-  PDSynth *snareSynth;
-  KickModule kickModule;
+  SnareModule snare_module;
+  KickModule kick_module;
 
   // Assets
   LCDFont* font;
@@ -27,12 +29,12 @@ typedef struct GameData {
 void setup(PlaydateAPI *pd);
 void game_init(void);
 void game_update(void);
-void initFont(void);
-void initBitmaps(void);
-void initSprite(void);
-void initKick(void);
-void initSnare(void);
-void updateDeltaTime(void);
-void updateButtons(void);
-void buttonsPressed(void);
+void init_font(void);
+void init_bitmaps(void);
+void init_sprite(void);
+void init_kick(void);
+void init_snare(void);
+void update_delta_time(void);
+void update_buttons(void);
+bool button_pressed(PDButtons button);
 void game_update(void);

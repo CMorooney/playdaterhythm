@@ -9,6 +9,6 @@ typedef struct KickModule {
   LCDSprite *sprite;
 } KickModule;
 
-void initKickModule(PlaydateAPI *playdate);
-KickModule getKickModule(void);
-void hitKick(PlaydateAPI *playdate);
+void init_kick_module(PlaydateAPI *playdate);
+KickModule get_kick_module(void);
+void hit_kick(PlaydateAPI *playdate);

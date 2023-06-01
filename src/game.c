@@ -1,5 +1,4 @@
 #include "game.h"
-#include <stdbool.h>
 
 PlaydateAPI *playdate;
 GameData data;
@@ -10,14 +9,13 @@ void setup(PlaydateAPI *pd) {
 
 void game_init(void) {
   playdate -> display -> setRefreshRate(0);
-  playdate -> system -> setUpdateCallback(update, playdate);
 
-  initFont();
-  initKick();
-  initSnare();
+  init_font();
+  init_kick();
+  init_snare();
 }
 
-void initFont(void) {
+void init_font(void) {
   const char *err;
   const char * fontpath = "/System/Fonts/Asheville-Sans-14-Bold.pft";
   data.font = playdate -> graphics -> loadFont(fontpath, &err);
@@ -26,59 +24,48 @@ void initFont(void) {
   }
 }
 
-void initKick(void) {
-  initKickModule(playdate);
-  data.kickModule = getKickModule();
+void init_kick(void) {
+  init_kick_module(playdate);
+  data.kick_module = get_kick_module();
 }
 
-void initSnare(void) {
-  playdate -> system -> logToConsole("init snareSynth");
-  data.snareSynth = playdate -> sound -> synth -> newSynth();
-  if (data.snareSynth == NULL) {
-    playdate -> system -> error("Couldn't create snareSynth");
-  } else {
-    playdate -> sound -> synth -> setWaveform(data.snareSynth, kWaveformNoise);
-    playdate -> sound -> synth -> setAttackTime(data.snareSynth, 0);
-    playdate -> sound -> synth -> setDecayTime(data.snareSynth, SNARE_DECAY);
-  }
+void init_snare(void) {
+  init_snare_module(playdate);
+  data.snare_module = get_snare_module();
 }
 
-void updateDeltaTime(void) {
+void update_delta_time(void) {
   int current_time = playdate -> system -> getCurrentTimeMilliseconds();
   data.delta_time = current_time - data.last_time;
   data.last_time = current_time;
 }
 
-void updateButtons(void) {
-  playdate -> system -> getButtonState(&data.buttonsHeld,
-                                       &data.buttonsPressed,
-                                       &data.buttonsReleased);
+void update_buttons(void) {
+  playdate -> system -> getButtonState(&data.buttons_held,
+                                       &data.buttons_pressed,
+                                       &data.buttons_released);
 }
 
 // makes sure button is in buttonsPressed flags
 // AND not in buttonsReleased flags
 // this should be called after `updateButtons` to ensure those flags are up to date
-bool buttonPressed(PDButtons button) {
-  if(button & data.buttonsPressed && !(button & data.buttonsReleased)) {
+bool button_pressed(PDButtons button) {
+  if(button & data.buttons_pressed && !(button & data.buttons_released)) {
     return true;
   }
   return false;
 }
 
 void game_update(void) {
-  updateDeltaTime();
-  updateButtons();
+  update_delta_time();
+  update_buttons();
 
-  //drawTrack();
-  //drawBar();
-
-  if(buttonPressed(kButtonDown)) {
-    hitKick(playdate);
+  if(button_pressed(kButtonDown)) {
+    hit_kick(playdate);
   }
 
-  if(buttonPressed(kButtonRight)) {
-    playdate -> system -> logToConsole("RIGHT PRESSED: playing snare");
-    playdate -> sound -> synth -> playNote(data.snareSynth, SNARE_HZ, 1, SNARE_DECAY, 0);
+  if(button_pressed(kButtonRight)) {
+    hit_snare(playdate);
   }
 
   playdate -> system -> drawFPS(0, 0);
