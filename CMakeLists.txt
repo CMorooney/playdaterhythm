@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.14)
 set(CMAKE_C_STANDARD 11)
 
 set(ENVSDK $ENV{PLAYDATE_SDK_PATH})
-set(CSOURCE src/main.c src/game.c src/kick.c src/snare.c)
+set(CSOURCE src/main.c src/game.c src/drum.c src/kick.c src/snare.c src/drawing.c)
 
 if (NOT ${ENVSDK} STREQUAL "")
 	# Convert path from Windows

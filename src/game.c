@@ -1,4 +1,5 @@
 #include "game.h"
+#include "drawing.h"
 
 PlaydateAPI *playdate;
 GameData data;
@@ -10,6 +11,7 @@ void setup(PlaydateAPI *pd) {
 void game_init(void) {
   playdate -> display -> setRefreshRate(0);
 
+  init_drawing(playdate);
   init_font();
   init_kick();
   init_snare();
@@ -62,6 +64,7 @@ void game_update(void) {
 
   if(button_pressed(kButtonDown)) {
     hit_kick(playdate);
+    create_note(KICK, 10);
   }
 
   if(button_pressed(kButtonRight)) {
