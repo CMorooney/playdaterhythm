@@ -3,6 +3,9 @@
 PlaydateAPI *playdate;
 GameData data;
 
+#define BPM 120
+#define BPS BPM/60.0f
+
 void setup(PlaydateAPI *pd) {
   playdate = pd;
 }
@@ -10,20 +13,10 @@ void setup(PlaydateAPI *pd) {
 void game_init(void) {
   playdate -> display -> setRefreshRate(0);
 
+  data.time_since_last_beat = -1;
   init_drawing(playdate);
-  draw_road();
-  init_font();
   init_kick();
   init_snare();
-}
-
-void init_font(void) {
-  const char *err;
-  const char * fontpath = "/System/Fonts/Asheville-Sans-14-Bold.pft";
-  data.font = playdate -> graphics -> loadFont(fontpath, &err);
-  if (data.font == NULL) {
-    playdate -> system -> error("%s:%i Couldn't load font %s: %s", __FILE__, __LINE__, fontpath, err);
-  }
 }
 
 void init_kick(void) {
@@ -42,6 +35,19 @@ void update_delta_time(void) {
   data.last_time = current_time;
 }
 
+// returns true if a new beat marker should be drawn.
+// currently based on beats-per-second macro, but we likely need a lot more precision
+bool update_beat_time(void) {
+  if(data.time_since_last_beat == -1 || data.time_since_last_beat >= BPS/5) {
+    data.time_since_last_beat = 0;
+    playdate->system->resetElapsedTime();
+    return true;
+  } else {
+    data.time_since_last_beat = playdate->system->getElapsedTime();
+    return false;
+  }
+}
+
 void update_buttons(void) {
   playdate -> system -> getButtonState(&data.buttons_held,
                                        &data.buttons_pressed,
@@ -51,25 +57,32 @@ void update_buttons(void) {
 // makes sure button is in buttonsPressed flags
 // AND not in buttonsReleased flags
 // this should be called after `updateButtons` to ensure those flags are up to date
-bool button_pressed(PDButtons button) {
+bool is_button_pressed(PDButtons button) {
   if(button & data.buttons_pressed && !(button & data.buttons_released)) {
     return true;
   }
   return false;
 }
 
+// main game loop
 void game_update(void) {
   update_delta_time();
+
+  bool newBeat = update_beat_time();
+  if(newBeat) {
+    add_new_road_line();
+  }
+
   update_notes();
 
   update_buttons();
 
-  if(button_pressed(kButtonDown)) {
+  if(is_button_pressed(kButtonDown)) {
     hit_kick(playdate);
     create_kick_note(data.kick_module);
   }
 
-  if(button_pressed(kButtonRight)) {
+  if(is_button_pressed(kButtonRight)) {
     hit_snare(playdate);
     create_snare_note(data.snare_module);
   }

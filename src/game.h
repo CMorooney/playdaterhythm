@@ -4,10 +4,10 @@
 #include "drawing.h"
 
 typedef struct GameData {
-  // Frame Data
-  uint32_t frame;
+  // Time Data
   float last_time;
   float delta_time;
+  float time_since_last_beat;// in seconds
 
   // Input Data
   PDButtons buttons_held;
@@ -32,5 +32,5 @@ void init_kick(void);
 void init_snare(void);
 void update_delta_time(void);
 void update_buttons(void);
-bool button_pressed(PDButtons button);
+bool is_button_pressed(PDButtons button);
 void game_update(void);
