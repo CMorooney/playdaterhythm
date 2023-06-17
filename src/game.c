@@ -73,18 +73,16 @@ void game_update(void) {
     add_new_road_line();
   }
 
-  update_notes();
+  playdate->sprite->updateAndDrawSprites();
 
   update_buttons();
 
   if(is_button_pressed(kButtonDown)) {
     hit_kick(playdate);
-    create_kick_note(data.kick_module);
   }
 
   if(is_button_pressed(kButtonRight)) {
     hit_snare(playdate);
-    create_snare_note(data.snare_module);
   }
 
   playdate -> system -> drawFPS(0, 0);
